@@ -1,0 +1,68 @@
+<section class="main">
+  <div class="container-fluid p-0">
+    <div class="row h-100">
+      <div class="col-4">
+
+        <div class="loginSpace h-100">
+          <div class="container">
+
+            <div class="row align-item-start">
+              <div class="col-12 text-center pt-5">
+                <img src="assets/img/logo.png" alt="logo lol" width="15%">
+              </div>
+            </div>
+
+            <div class="row align-item-center">
+              <div class="col-12 text-center formLogin">
+
+                <p class="display-4">Inscription</p>
+
+                <div *ngIf="registerError" class="accountNotFound">
+                  <mat-icon>
+                    error
+                  </mat-icon>
+                  <p *ngIf="errorMessage">{{errorMessage}}</p>
+                  <p *ngIf="!errorMessage">Une erreur est survenue lors de la création de votre compte</p>
+                </div>
+
+                <!-- <button mat-button (click)="openDialog()">Open dialog</button> -->
+
+                <img [src]="iconUrl + selectedImage" alt="" width="100" class="iconAvatar">
+
+                <form [formGroup]="registerForm">
+                  <mat-form-field appearance="fill" class="inputForm">
+                    <mat-label>Nom d'utilisateur</mat-label>
+                    <input matInput width="100%" formControlName="username">
+                    <mat-error *ngIf="registerForm.invalid">Pseudo requis</mat-error>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill" class="inputForm">
+                    <mat-label>Mot de passe</mat-label>
+                    <input type="password" matInput width="100%" formControlName="password">
+                    <mat-error *ngIf="registerForm.invalid">Mot de passe requis</mat-error>
+                  </mat-form-field>
+
+                  <div class="buttonForm">
+                    <button mat-stroked-button color="warn" (click)="onSubmit()">
+                      <mat-icon aria-hidden="false" aria-label="Example home icon">check</mat-icon>
+                    </button>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+
+            <div class="row align-item-end">
+              <div class="col-12 text-center pt-5">
+                <p class="linkLogin">Déjà un compte ?</p>
+                <a routerLink="/account/login" class="linkLogin">Connecte toi ici</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+

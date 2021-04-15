@@ -1,0 +1,73 @@
+@import '~@angular/material/theming';
+$warn: rgb(244, 67, 54);
+
+.main{
+  height: 100%;
+  background-image: url('/../../../../assets/img/teemo.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container-fluid{
+  height: 100%;
+
+  /* padding: 0; */
+
+  .loginSpace{
+    background-color: white;
+    animation: buildPage 1s;
+
+    .formLogin{
+      padding: 10% 0%;
+
+      .iconAvatar{
+        border-radius: 50%;
+        margin: 3% 0;
+        border: 3px solid rgb(208, 156, 60);
+        cursor: pointer;
+      }
+
+      .accountNotFound {
+        color: $warn;
+      }
+
+      form{
+        padding: 3% 0;
+
+        .inputForm{
+          width: 70%;
+        }
+
+        .mat-warn{
+          transition: 0.25s;
+        }
+
+        .mat-warn:hover{
+          background-color: $warn;
+          color: white;
+          transition: 0.25s;
+        }
+      }
+
+    }
+
+    .linkLogin{
+      color: gray;
+      text-decoration: none;
+      font-weight: 400;
+    }
+  }
+}
+
+
+@keyframes buildPage{
+  from{
+    position: relative;
+    left: -100%;
+  }
+  to{
+    position: relative;
+    left: 0%;
+  }
+}
+
