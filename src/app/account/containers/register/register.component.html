@@ -25,9 +25,7 @@
                   <p *ngIf="!errorMessage">Une erreur est survenue lors de la création de votre compte</p>
                 </div>
 
-                <!-- <button mat-button (click)="openDialog()">Open dialog</button> -->
-
-                <img [src]="iconUrl + selectedImage" alt="" width="100" class="iconAvatar">
+                <img [src]="iconUrl + selectedImage" alt="" width="100" class="iconAvatar" (click)="openDialog()">
 
                 <form [formGroup]="registerForm">
                   <mat-form-field appearance="fill" class="inputForm">

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { FormGroup } from '@angular/forms';
 import { TokenService } from './token.service';
@@ -9,6 +9,8 @@ import { TokenService } from './token.service';
 })
 export class AccountService {
 
+  noAuthHeader = { headers: new HttpHeaders({ NoAuth: "True" }) };
+
   constructor(
     private http: HttpClient,
     private tokenService: TokenService
@@ -16,11 +18,12 @@ export class AccountService {
 
   public login(formValue: FormGroup) {
     console.log(formValue);
-    return this.http.post<any>(environment.apiUrl + '/authenticate', formValue);
+    return this.http.post<any>(environment.apiUrl + '/authenticate', formValue, this.noAuthHeader);
   }
 
   public register(formValue: FormGroup) {
-    return this.http.post<any>(environment.apiUrl + '/account', formValue)
+    console.log(formValue);
+    return this.http.post<any>(environment.apiUrl + '/account', formValue, this.noAuthHeader)
   }
 
   public getAccountPayload() {
@@ -32,6 +35,10 @@ export class AccountService {
     } else {
       return null;
     }
+  }
+
+  public getAllIcons() {
+    return this.http.get<any>('http://ddragon.leagueoflegends.com/cdn/11.8.1/data/en_US/profileicon.json');
   }
 
 

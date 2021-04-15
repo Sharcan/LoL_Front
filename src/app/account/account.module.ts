@@ -11,6 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './containers/register/register.component';
+import { IconDialogComponent } from './components/icon-dialog/icon-dialog.component';
 
 export const routes: Routes = [
   {
@@ -34,7 +35,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [LoginComponent, RegisterComponent, IconDialogComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

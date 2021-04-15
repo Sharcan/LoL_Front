@@ -1,0 +1,17 @@
+.iconAvatar{
+  border-radius: 50%;
+  margin: 3% 0;
+  border: 3px solid rgb(208, 156, 60);
+  cursor: pointer;
+}
+
+.iconAvatar:hover{
+  filter: brightness(1.25);
+}
+
+.selectedImage{
+  cursor: pointer;
+  border-radius: 50%;
+  margin: 3% 0;
+  border: 3px solid rgb(6, 121, 6);
+}

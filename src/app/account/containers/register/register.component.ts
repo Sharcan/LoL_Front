@@ -6,6 +6,7 @@ import { TokenService } from '../../services/token.service';
 
 
 import {MatDialog} from '@angular/material/dialog';
+import { IconDialogComponent } from '../../components/icon-dialog/icon-dialog.component';
 
 @Component({
   selector: 'app-register',
@@ -21,9 +22,9 @@ export class RegisterComponent implements OnInit {
 
 
   registerForm = new FormGroup({
-    // icon: new FormControl('0.png'),
     username: new FormControl('Sharcan'),
-    password: new FormControl('azerty123')
+    password: new FormControl('azerty123'),
+    icon: new FormControl()
   });
 
   constructor(
@@ -38,38 +39,35 @@ export class RegisterComponent implements OnInit {
 
 
   public onSubmit(){
-  //   this.registerForm.controls['icon'].setValue(this.selectedImage);
-  //   if(this.registerForm.valid){
-  //     this.accountService.register(this.registerForm.value).subscribe(
-  //       res => {
-  //         this.registerError = false;
-  //         this.loginAfterRegister();
-  //       },
-  //       err => {
-  //         this.errorMessage = err.error.message;
-  //         this.registerError = true;
-  //       }
-  //     );
-  //   }
+    this.registerForm.controls['icon'].setValue(this.selectedImage);
+    if(this.registerForm.valid){
+      this.accountService.register(this.registerForm.value).subscribe(
+        res => {
+          this.registerError = false;
+          this.loginAfterRegister();
+        },
+        err => {
+          this.errorMessage = err.error.message;
+          this.registerError = true;
+        });
+    }
   }
 
-  // private loginAfterRegister() {
-  //   this.accountService.login(this.registerForm.value).subscribe(
-  //     res => {
-  //       this.tokenService.setToken("token", res.token);
-  //       this.router.navigateByUrl('/dashboard');
-  //     }
-  //   );
-  // }
+  private loginAfterRegister() {
+    this.accountService.login(this.registerForm.value).subscribe(
+      res => {
+        // this.tokenService.setToken("token", res.token);
+        this.router.navigateByUrl('/login');
+      }
+    );
+  }
 
-  // public openDialog() {
-  //   const dialogRef = this.dialog.open(IconDialogComponent);
+  public openDialog() {
+    const iconeReference = this.dialog.open(IconDialogComponent);
 
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if(result){
-  //       this.selectedImage = result + '.png';
-  //     }
-  //   });
-  // }
+    iconeReference.afterClosed().subscribe(result => {
+      this.selectedImage = result + '.png';
+    });
+  }
 }
 
