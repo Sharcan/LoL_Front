@@ -17,12 +17,10 @@ export class AccountService {
   ) { }
 
   public login(formValue: FormGroup) {
-    console.log(formValue);
     return this.http.post<any>(environment.apiUrl + '/authenticate', formValue, this.noAuthHeader);
   }
 
   public register(formValue: FormGroup) {
-    console.log(formValue);
     return this.http.post<any>(environment.apiUrl + '/account', formValue, this.noAuthHeader)
   }
 
@@ -41,5 +39,13 @@ export class AccountService {
     return this.http.get<any>('http://ddragon.leagueoflegends.com/cdn/11.8.1/data/en_US/profileicon.json');
   }
 
+
+  public isLoggedIn() {
+    const userPayload = this.getAccountPayload();
+    if(userPayload){
+      return userPayload.exp > Date.now() / 1000;
+    }
+    return false;
+  }
 
 }

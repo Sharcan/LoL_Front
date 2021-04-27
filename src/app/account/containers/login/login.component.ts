@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AccountService } from '../../services/account.service';
 import { TokenService } from '../../services/token.service';
 
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -29,12 +31,11 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.valid){
       this.accountService.login(this.loginForm.value).subscribe(
         res => {
-          console.log(res);
           this.tokenService.setToken('token', res.token);
           this.accountNotFound = false;
+          this.router.navigateByUrl('/dashboard');
         },
         err => {
-          console.log(err);
           this.accountNotFound = true;
         }
       )
